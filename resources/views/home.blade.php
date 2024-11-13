@@ -112,99 +112,117 @@
                 <!-- @yield('content') start -->
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <!-- content start -->
-                        <div class="container mt-5">
-                            <div class="card">
-                                <div class="card-header bg-info text-white">
-                                    Stock Information
-                                </div>
-                                <div class="card-body">
-                                    <form id="add-stock">
-                                        @csrf
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-md-4 col-sm-12 mb-3" style="margin-top: 20px;">
-                                                    <label for="stockName" class="font-weight-bold">Search Stock name:</label>
-                                                    <input type="text" class="form-control" id="stockName" required>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12 mb-3">
-                                                    <label for="stockName" class="font-weight-bold mt-md-4">Current Market Price:</label>
-                                                    <span id="priceContainer" class="font-weight-bold text-success" style="font-size:20px;"></span>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12 mb-3">
-                                                    <label for="marketcap" class="font-weight-bold mt-md-4">Market Cap</label>
-                                                    <div>
-                                                        <input type="radio" id="small" name="marketcap" value="small">
-                                                        <label for="small">Small</label><br>
-                                                        <input type="radio" id="medium" name="marketcap" value="medium">
-                                                        <label for="medium">Medium</label><br>
-                                                        <input type="radio" id="large" name="marketcap" value="large" checked>
-                                                        <label for="large">Large</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4 col-sm-12 mb-3" style="margin-top: 20px;">
-                                                    <label for="quantity" class="font-weight-bold">Quantity</label>
-                                                    <input type="text" class="form-control" id="quantity" required>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12 mb-3">
-                                                    <label for="stockName" class="font-weight-bold mt-md-4">Total Price:</label>
-                                                    <span id="total_price" class="font-weight-bold text-success" style="font-size:20px;"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-right">
-                                    <input type="button" id="addbtn" class="btn btn-info btn-sm" style="height:50px;" value="BUY stock">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- content end -->
-                    </div>
-                    <div class="col-md-6" style="margin-top: 23px;">
-                        <!-- content start -->
-                        <div class="container mt-4">
-                            <div class="card">
-                                <div class="card-header bg-info text-white">
-                                    Investment Summary
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12 mb-3">
-                                            <label for="totalInvest1" class="font-weight-bold">Total Invest:</label>
-                                            <span id="totalInvest1" class="font-weight-bold text-dark" style="font-size:20px;"></span>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 mb-3">
-                                            <label for="totalCurrentValue" class="font-weight-bold">Total Current Value:</label>
-                                            <span id="totalCurrentValue" class="font-weight-bold text-dark" style="font-size:20px;">{{ $totalCurrentValue }}</span>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 mb-3">
-                                            <label for="totalPLAmount" class="font-weight-bold">PL Value</label>
-                                            <span id="plAmount" class="font-weight-bold" style="font-size:20px;"></span>
-                                            <label for="totalPLAmount" class="font-weight-bold"> / PL Percent</label>
-                                            <span id="total_pl_percent" class="font-weight-bold" style="font-size:20px;"></span>
-                                            <span type="hidden" id="totalPLAmount" class="font-weight-bold" style="font-size:20px;">{{ $pl_amount }}</span>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 mb-3">
-                                            <label for="totalDayChangeValue" class="font-weight-bold">Day changes value:</label>
-                                            <span id="totalDayChangeValue" class="font-weight-bold" style="font-size:20px;"></span>
-                                            <label for="totalDayChangeValue" class="font-weight-bold">Day changes Percent:</label>
-                                            <span id="averageDayChangePercentage" class="font-weight-bold" style="font-size:20px;"></span>
-                                        </div>
-                                        <div class="col-md-12 col-sm-12 mb-3">
-                                            <label for="XIRR" class="font-weight-bold">XIRR Returns:</label>
-                                            <span id="xirrPercentage" class="font-weight-bold" style="font-size:20px;"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- content end -->
+    <!-- First row (Stock Information) full-width -->
+    <div class="col-md-12">
+        <!-- content start -->
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Stock Information
+                </div>
+                <div class="card-body" style="background-image: url('\stock bg.jpg'); background-size: cover; background-position: center;">
+
+    <form id="add-stock">
+        @csrf
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-3" style="margin-top: 20px;">
+                    <label for="stockName" class="font-weight-bold">Search Stock name:</label>
+                    <input type="text" class="form-control" id="stockName" required>
+                </div>
+                <div class="col-md-4 col-sm-12 mb-3">
+                    <label for="stockName" class="font-weight-bold mt-md-4">Current Market Price:</label>
+                    <span id="priceContainer" class="font-weight-bold text-success" style="font-size:20px;"></span>
+                </div>
+                <div class="col-md-4 col-sm-12 mb-3">
+                    <label for="marketcap" class="font-weight-bold mt-md-4">Market Cap</label>
+                    <div>
+                        <input type="radio" id="small" name="marketcap" value="small">
+                        <label for="small">Small</label><br>
+                        <input type="radio" id="medium" name="marketcap" value="medium">
+                        <label for="medium">Medium</label><br>
+                        <input type="radio" id="large" name="marketcap" value="large" checked>
+                        <label for="large">Large</label>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-3" style="margin-top: 20px;">
+                    <label for="quantity" class="font-weight-bold">Quantity</label>
+                    <input type="text" class="form-control" id="quantity" required>
+                </div>
+                <div class="col-md-4 col-sm-12 mb-3">
+                    <label for="stockName" class="font-weight-bold mt-md-4">Total Price:</label>
+                    <span id="total_price" class="font-weight-bold text-success" style="font-size:20px;"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+                <div class="card-footer text-right">
+                    <input type="button" id="addbtn" class="btn btn-info btn-sm" style="height:50px;" value="BUY stock">
+                </div>
+            </div>
+        </div>
+        <!-- content end -->
+    </div>
+</div>
+
+<div class="row">
+    <!-- Second row (Investment Summary) -->
+    <div class="col-md-12">
+        <!-- Content start -->
+        <div class="container mt-4">
+            <div class="row">
+                <!-- Total Invest Card -->
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card" style="background-color: #e3f2fd; border-radius: 10px;">
+                        <div class="card-body">
+                            <h8 class="card-title font-weight-bold">Total Invest:<span id="totalInvest1" class="font-weight-bold text-dark" style="font-size:20px;"></span></h8><br>
+                            <h8 class="card-title font-weight-bold"> Current Value:<span id="totalCurrentValue" class="font-weight-bold text-dark" style="font-size:20px;">{{ $totalCurrentValue }}</span></h8>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Current Value Card -->
+                <div class="col-md-2 col-sm-5 mb-2">
+                    <div class="card" style="background-color: #ffccbc; border-radius: 10px;">
+                        <div class="card-body">
+                        <h8 class="card-title font-weight-bold">PL Value: <span id="plAmount" class="font-weight-bold" style="font-size:20px;"></span>
+                        <span type="hidden" id="totalPLAmount" class="font-weight-bold" style="font-size:20px;">{{ $pl_amount }}</span></h8><br>
+                        
+                        <h8 class="card-title font-weight-bold">PL Perc:<span id="total_pl_percent" class="font-weight-bold" style="font-size:20px;"></span> </h8>
+                                
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day Change Value Card -->
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card" style="background-color: #c8e6c9; border-radius: 10px;">
+                        <div class="card-body">
+                            <h7 class="card-title font-weight-bold">Day Changes Value: <span id="totalDayChangeValue" class="font-weight-bold" style="font-size:20px;"></span></h7><br>
+                            <h7 class="card-title font-weight-bold">Day Changes Percent:<span id="averageDayChangePercentage" class="font-weight-bold" style="font-size:20px;"></span></h7>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XIRR Returns Card -->
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card" style="background-color: #f8bbd0; border-radius: 10px; height:101px;" >
+                        <div class="card-body" >
+                            <h7 class="card-title font-weight-bold">XIRR Returns:</h7>
+                            <span id="xirrPercentage" class="font-weight-bold" style="font-size:20px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- content end -->
+    </div>
+</div>
+
 
                 <!-- Market Cap Radio Buttons -->
                 <div class="col-md-6 market-cap-container" style="margin-left: 80px;">
@@ -310,13 +328,12 @@
                 $('#totalCurrentValue').text(response.totalCurrentValue);
                 $('#totalInvest1').text(response.totalInvest);
                 $('#plAmount').text(response.plAmount);
+                total_pl_percent
                 $('#totalDayChangeValue').text(response.totalDayChangeValue);
                 $('#averageDayChangePercentage').text(response.averageDayChangePercentage + '%');
                 $('#total_pl_percent').text(response.total_pl_percent + '%');
-
-                
+  
             },
-          
        
         });
 
@@ -329,7 +346,6 @@
             } else if (plAmount < 0) {
                 plAmountElement.style.color = 'red';
             }
-
            
 
         $('#stockTable tbody tr').each(function() {
