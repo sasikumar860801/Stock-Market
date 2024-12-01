@@ -76,6 +76,21 @@
         .navbar h2 {
             margin: 0;
         }
+        #loading {
+    position: fixed;       /* Fix the loading GIF in place */
+    top: 50%;              /* Center vertically */
+    left: 50%;             /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to truly center */
+    z-index: 9999;         /* Ensure it's on top of other elements */
+    display: none;         /* Initially hidden */
+    text-align: center;    /* Center the image inside the div */
+}
+
+#loading img {
+    width: 100px;          /* Adjust the width as desired */
+    height: auto;          /* Keep aspect ratio */
+}
+
     </style>
 </head>
 <body>
@@ -249,6 +264,9 @@
                     </div>
                 </div>
 
+                <div id="loading" style="display:none;">
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/b6e0b072897469.5bf6e79950d23.gif" alt="Loading...">
+</div>
                 <!-- Portfolio Table -->
                 <div class="container-fluid">
                     <div class="row">
@@ -478,6 +496,7 @@
         total_price: totalPrice,
         buy_date: buyDate // Include buy_date in the data object
     };
+    $('#loading').show();
 
     // Send data to server using AJAX POST request
     $.ajax({
@@ -488,7 +507,7 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(response) {
-            alert("test");
+            $('#loading').hide();
             $('#stockName').val("");
             $('#quantity').val("");
 
@@ -548,6 +567,7 @@ $('#exit').click(function() {
     var stockId = $('#hiddenStockId').val();
     var sellQuantity = $('#sellQuantity').val();
     var currentMarketPrice = $('input.latestPrice[data-stock-id="' + stockId + '"]').val();
+    $('#loading').show();
 
     $.ajax({
         url: '{{ route("exitstock") }}',
@@ -559,8 +579,10 @@ $('#exit').click(function() {
             _token: '{{ csrf_token() }}'
         },
         success: function(response) {
+            $('#loading').hide();
+            $('#myModal').hide();
             if (response.status === 'success') {
-                alert(response.message);
+                // alert(response.message);
                 location.reload(); // Reload the page to reflect changes
             } else {
                 alert(response.message);
@@ -576,6 +598,8 @@ $('#exit').click(function() {
 
 $('input[name="marketcaps"]').change(function() {
         var selectedMarketCap = $(this).val();
+        $('#loading').show();
+
 
         $.ajax({
             url: '{{ route("filterByMarketCap") }}', // Make sure this route exists
@@ -584,6 +608,8 @@ $('input[name="marketcaps"]').change(function() {
                 marketcap: selectedMarketCap
             },
             success: function(response) {
+                $('#loading').hide();
+
                 // Update the part of the page with the new data
                 $('#portfolioData').html(response.html);
                 
