@@ -2,12 +2,15 @@
 
 @foreach($data as $item)
 <tr>
-    <td class="stock-id">{{ $item->stock_id }}</td>
+<td class="serial-number">{{ $loop->index + 1 }}</td> <!-- Serial number -->
+    <td class="stock-id" style="display: none">{{ $item->stock_id }}</td>
     <td class="stock-details">
         <span class="sticky">{{ $item->stock_name }}</span><br>
         <span class="stock-quantity">{{ $item->quantity }} Shares</span>
     </td>
-    <td>{{ $item->buy_date }}</td>
+    <!-- <td >{{ $item->buy_date }}</td> -->
+    <td>{{ \Carbon\Carbon::parse($item->buy_date)->format('d M Y') }}</td>
+
     <td>
         @if(isset($data2[$item->stock_id]['one_day_change_value']))
             <span>{{ $data2[$item->stock_id]['one_day_change_value'] }}</span><br>
