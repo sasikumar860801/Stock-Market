@@ -128,7 +128,12 @@
 <div class="form-check d-flex align-items-center">
     <input class="form-check-input" type="radio" name="marketcap" id="small" value="small">
     <label class="form-check-label" for="small">Small</label>
-</div>    </div>
+</div>   
+<div class="form-check d-flex align-items-center">
+    <input class="form-check-input" type="radio" name="marketcap" id="risky" value="risky">
+    <label class="form-check-label" for="risky">Risky</label>
+</div>
+ </div>
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead class="thead-dark">

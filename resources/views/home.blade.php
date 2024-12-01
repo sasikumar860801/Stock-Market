@@ -143,6 +143,8 @@
                         <label for="medium">Medium</label><br>
                         <input type="radio" id="large" name="marketcap" value="large" checked>
                         <label for="large">Large</label>
+                        <input type="radio" id="risky" name="marketcap" value="risky" >
+                        <label for="large">Risky</label>
                     </div>
                 </div>
             </div>
@@ -228,6 +230,10 @@
                 <div class="col-md-6 market-cap-container" style="margin-left: 80px;">
                     <label for="marketcap" class="market-cap-label" style="margin-left: 50px;">Market Cap</label>
                     <div class="radio-group">
+                    <div class="radio-container">
+                            <input type="radio" id="risky" name="marketcaps" value="risky">
+                            <label for="risky" class="radio-label">Risky</label>
+                        </div>
                         <div class="radio-container">
                             <input type="radio" id="small" name="marketcaps" value="small">
                             <label for="small" class="radio-label">Small</label>
