@@ -171,37 +171,86 @@ class finance extends Controller
             return view('home', compact('data', 'data2', 'totalinvest', 'totalCurrentValue', 'pl_amount'));
         }
         
-        public function cmp($ids)
-        {
-            if (!is_array($ids)) {
-                $ids = [$ids];
+        // public function cmp($ids)
+        // {
+        //     if (!is_array($ids)) {
+        //         $ids = [$ids];
+        //     }
+        
+        //     $results = [];
+        
+        //     foreach ($ids as $id) {
+        //         dd('test2');
+        //         $url = "https://www.screener.in/api/company/{$id}/chart/?q=Price-DMA50-DMA200-Volume&days=7&consolidated=true";
+        //         $response = Http::get($url);
+        
+        //         if ($response->successful()) {
+        //             $data = $response->json();
+        //             $latestPrice = $this->extractLatestPrice($data);
+        //             $oneDayChange = $this->calculateOneDayChange($data);
+        //             $results[$id] = [
+        //                 'latest_price' => $latestPrice,
+        //                 'one_day_change_value' => $oneDayChange['value'],
+        //                 'one_day_change_percentage' => $oneDayChange['percentage']
+        //             ];
+        //         } else {
+        //             $results[$id] = [
+        //                 'latest_price' => null,
+        //                 'one_day_change_value' => null,
+        //                 'one_day_change_percentage' => null
+        //             ]; // Handle the case where the API request fails
+        //         }
+        //     }
+        //     return $results;
+        // }
+
+        
+
+        
+
+public function cmp($ids)
+{
+    if (!is_array($ids)) {
+        $ids = [$ids];
+    }
+
+    $results = [];
+
+    foreach ($ids as $id) {
+        $url = "https://www.screener.in/api/company/{$id}/chart/?q=Price-DMA50-DMA200-Volume&days=7&consolidated=true";
+
+        try {
+            $response = Http::retry(3, 1000) // Retry 3 times with 1-second delay
+                ->get($url);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                $latestPrice = $this->extractLatestPrice($data);
+                $oneDayChange = $this->calculateOneDayChange($data);
+                $results[$id] = [
+                    'latest_price' => $latestPrice,
+                    'one_day_change_value' => $oneDayChange['value'],
+                    'one_day_change_percentage' => $oneDayChange['percentage']
+                ];
+            } else {
+                $results[$id] = [
+                    'latest_price' => null,
+                    'one_day_change_value' => null,
+                    'one_day_change_percentage' => null
+                ];
             }
-        
-            $results = [];
-        
-            foreach ($ids as $id) {
-                $url = "https://www.screener.in/api/company/{$id}/chart/?q=Price-DMA50-DMA200-Volume&days=7&consolidated=true";
-                $response = Http::get($url);
-        
-                if ($response->successful()) {
-                    $data = $response->json();
-                    $latestPrice = $this->extractLatestPrice($data);
-                    $oneDayChange = $this->calculateOneDayChange($data);
-                    $results[$id] = [
-                        'latest_price' => $latestPrice,
-                        'one_day_change_value' => $oneDayChange['value'],
-                        'one_day_change_percentage' => $oneDayChange['percentage']
-                    ];
-                } else {
-                    $results[$id] = [
-                        'latest_price' => null,
-                        'one_day_change_value' => null,
-                        'one_day_change_percentage' => null
-                    ]; // Handle the case where the API request fails
-                }
-            }
-            return $results;
+        } catch (\Exception $e) {
+            // Handle network or unexpected errors gracefully
+            $results[$id] = [
+                'latest_price' => null,
+                'one_day_change_value' => null,
+                'one_day_change_percentage' => null,
+                'error' => $e->getMessage()
+            ];
         }
+    }
+    return $results;
+}
         private function fetchLatestPrices($stockIds)
     {
         if (!is_array($stockIds)) {

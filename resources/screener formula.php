@@ -55,4 +55,59 @@ DII holding <11 AND
 FII holding <11 AND
 FII holding >5 
 
-industry pe 7 out of 10
+undervalued stock 
+PEG Ratio<1 AND
+Return on equity >15% AND
+Debt to equity <0.5% AND
+Current ratio>1 AND
+Price to book value <4 AND
+Interest Coverage Ratio <30% AND
+Market Capitalization >1000
+
+😎💵 (Cool face with dollar bills)
+😄💸 (Happy face with money flying away)
+😁💴 (Grinning face with yen or rupee)
+😄💵
+😁💰
+😎💸
+🤑💶
+🤩💴
+😃💳
+😆🪙
+🤗💲
+🫣💷
+😋💵
+😜💰
+🥳💸
+😍💎
+🤤💳
+😏💰
+
+Rural Electrification Corporation REC
+
+is registered with RBI as Non-Banking Finance Company (NBFC), Public Financial Institution (PFI) and Infrastructure Financing Company (IFC).
+
+so basica ivunga oru finance companny dha like ipo bajaj financemadhiri
+but ivunga edhuku funds provide pandranga nu  paathenganna power production or else power transmission or else power infrastructure
+
+REC provides long terms loans and other financing products to State, Centre and Private Companies for creation of infrastructure assets in the country.
+
+ivungaloda vision paathenganna india fulla irukura  rural areas ellathukum power supply konduvaranum 
+adhukaga work pandra state central , and private secor companys ku funds provide pannitu irukkanga
+and div yield umey last year la 34 rs kuduthurkanga per share ku 
+
+
+
+(High price all time-Current price)*100/High price all time >50 AND
+Down from 52w high >50 AND
+Market Capitalization >2000 AND
+Pledged percentage <5 AND
+DII holding + FII holding >5 AND
+Change in FII holding <2 AND
+Change in DII holding <2 AND
+Change in promoter holding 3Years <2 AND
+Price to Earning < Industry PE AND
+YOY Quarterly profit growth >10 AND
+Return over 3months >5
+
+

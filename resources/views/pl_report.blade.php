@@ -108,32 +108,21 @@
             
 
 
-<div class="container mt-4">
+            <div class="container mt-4">
     <h2 class="mb-4">PL Report</h2>
-    
+
     <div class="form-group">
-        <label for="marketcap" style="font-weight: bold;">Market Cap:</label>
-        <div class="form-check d-flex align-items-center">
-    <input class="form-check-input" type="radio" name="marketcap" id="all" value="all" checked>
-    <label class="form-check-label" for="all">All</label>
+        <label style="font-weight: bold;">Market Cap:</label>
+        <div class="d-flex flex-wrap gap-2 mt-2">
+            <button type="button" name="marketcap" id="all" value="all" class="btn btn-outline-primary">All</button>
+            <button type="button" name="marketcap" id="large" value="large" class="btn btn-outline-primary">Large</button>
+            <button type="button" name="marketcap" id="medium" value="medium" class="btn btn-outline-primary">Medium</button>
+            <button type="button" name="marketcap" id="small" value="small" class="btn btn-outline-primary">Small</button>
+            <button type="button" name="marketcap" id="risky" value="risky" class="btn btn-outline-primary">Risky</button>
+        </div>
+    </div>
 </div>
-<div class="form-check d-flex align-items-center">
-    <input class="form-check-input" type="radio" name="marketcap" id="large" value="large">
-    <label class="form-check-label" for="large">Large</label>
-</div>
-<div class="form-check d-flex align-items-center">
-    <input class="form-check-input" type="radio" name="marketcap" id="medium" value="medium">
-    <label class="form-check-label" for="medium">Medium</label>
-</div>
-<div class="form-check d-flex align-items-center">
-    <input class="form-check-input" type="radio" name="marketcap" id="small" value="small">
-    <label class="form-check-label" for="small">Small</label>
-</div>   
-<div class="form-check d-flex align-items-center">
-    <input class="form-check-input" type="radio" name="marketcap" id="risky" value="risky">
-    <label class="form-check-label" for="risky">Risky</label>
-</div>
- </div>
+
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -185,7 +174,7 @@ $(document).ready(function() {
                 $('#sidebar').toggleClass('active');
             });
 
-    $('input[name="marketcap"]').change(function() {
+            $('button[name="marketcap"]').click(function () {
         var selectedMarketCap = $(this).val();
 
         $.ajax({
